@@ -26,7 +26,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${inter.variable} ${oswald.variable} h-full antialiased`}
     >
-      <body className={`${inter.className} min-h-full`}>{children}</body>
+      <body className={`${inter.className} flex min-h-full flex-col`}>
+        <header className="border-b border-line bg-background/95">
+          <div className="mx-auto grid h-20 w-full max-w-[1280px] grid-cols-[1fr_auto_1fr] items-center px-6" />
+        </header>
+        <main className="flex-1">{children}</main>
+      </body>
     </html>
   );
 }
