@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Oswald } from "next/font/google";
 import { Logo } from "@/components/logo";
 import { NavLinks } from "@/components/nav-links";
+import { PlanBadges } from "@/components/plan-badges";
 import "./globals.css";
 
 const inter = Inter({
@@ -33,7 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <div className="mx-auto grid h-20 w-full max-w-[1280px] grid-cols-[1fr_auto_1fr] items-center px-6">
             <Logo />
             <NavLinks />
-            <div />
+            <PlanBadges />
           </div>
         </header>
         <main className="flex-1">{children}</main>
