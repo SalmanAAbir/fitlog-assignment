@@ -12,6 +12,9 @@
   --line: #1c1f26;
   --active-nav: #1a2312;
   --badge-line: #2d313b;
+  --footer: #090a0d;
+  --footer-line: #1a1d24;
+  --copyright: #6b7280;
 }
 
 @theme inline {
@@ -23,6 +26,9 @@
   --color-line: var(--line);
   --color-active-nav: var(--active-nav);
   --color-badge-line: var(--badge-line);
+  --color-footer: var(--footer);
+  --color-footer-line: var(--footer-line);
+  --color-copyright: var(--copyright);
   --font-sans: var(--font-inter);
   --font-display: var(--font-oswald);
 }

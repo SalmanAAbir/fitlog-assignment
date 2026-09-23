@@ -3,6 +3,7 @@ import { Inter, Oswald } from "next/font/google";
 import { Logo } from "@/components/logo";
 import { NavLinks } from "@/components/nav-links";
 import { PlanBadges } from "@/components/plan-badges";
+import { SiteFooter } from "@/components/site-footer";
 import "./globals.css";
 
 const inter = Inter({
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </div>
         </header>
         <main className="flex-1">{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );
