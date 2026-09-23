@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Oswald } from "next/font/google";
+import { Logo } from "@/components/logo";
 import "./globals.css";
 
 const inter = Inter({
@@ -28,7 +29,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className={`${inter.className} flex min-h-full flex-col`}>
         <header className="border-b border-line bg-background/95">
-          <div className="mx-auto grid h-20 w-full max-w-[1280px] grid-cols-[1fr_auto_1fr] items-center px-6" />
+          <div className="mx-auto grid h-20 w-full max-w-[1280px] grid-cols-[1fr_auto_1fr] items-center px-6">
+            <Logo />
+          </div>
         </header>
         <main className="flex-1">{children}</main>
       </body>
