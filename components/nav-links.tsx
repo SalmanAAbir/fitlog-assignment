@@ -12,7 +12,7 @@ export function NavLinks() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex items-center" aria-label="Primary">
+    <nav className="flex items-center justify-center" aria-label="Primary">
       {links.map((link) => {
         const active =
           link.href === "/"
@@ -24,7 +24,7 @@ export function NavLinks() {
             key={link.href}
             href={link.href}
             aria-current={active ? "page" : undefined}
-            className={`inline-flex h-7 items-center rounded-full px-4 text-xs ${
+            className={`inline-flex h-7 items-center rounded-full px-2.5 text-xs whitespace-nowrap sm:px-4 ${
               active
                 ? "bg-active-nav font-semibold text-accent"
                 : "font-medium text-muted"

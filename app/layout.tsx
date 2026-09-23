@@ -31,7 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className={`${inter.className} flex min-h-full flex-col`}>
         <header className="border-b border-line bg-background/95">
-          <div className="mx-auto grid h-20 w-full max-w-[1280px] grid-cols-[1fr_auto_1fr] items-center px-6">
+          <div className="mx-auto grid h-20 w-full max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-3 px-4 sm:grid-cols-[1fr_auto_1fr] sm:px-6">
             <Logo />
             <NavLinks />
             <PlanBadges />
