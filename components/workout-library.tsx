@@ -15,8 +15,9 @@ export async function WorkoutLibrary() {
 
 export function WorkoutLibraryFallback() {
   return (
-    <div className="mt-8 flex justify-center py-16">
+    <div className="mt-8 flex flex-col items-center gap-3 py-16">
       <span className="loading loading-spinner loading-lg text-primary" />
+      <p className="text-sm text-[#8a92a0]">Loading workouts…</p>
     </div>
   );
 }

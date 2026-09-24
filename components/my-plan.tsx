@@ -2,15 +2,35 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { usePlan } from "@/components/plan-provider";
 import type { Workout } from "@/lib/workouts";
+
+type SortKey = "duration" | "calories" | "rating";
+
+const sortValue: Record<SortKey, (workout: Workout) => number> = {
+  duration: (workout) => workout.duration,
+  calories: (workout) => workout.caloriesBurned,
+  rating: (workout) => workout.rating,
+};
+
+function useMounted() {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+}
 
 export function MyPlan() {
   const { plan, saved, doneIds, markDone, removeFromPlan, removeFromSaved } =
     usePlan();
   const [tab, setTab] = useState<"plan" | "saved">("plan");
-  const workouts = tab === "plan" ? plan : saved;
+  const [sort, setSort] = useState<SortKey>("duration");
+  const mounted = useMounted();
+  const workouts = [...(tab === "plan" ? plan : saved)].sort(
+    (a, b) => sortValue[sort](b) - sortValue[sort](a),
+  );
   const minutes = workouts.reduce((total, workout) => total + workout.duration, 0);
   const calories = workouts.reduce(
     (total, workout) => total + workout.caloriesBurned,
@@ -32,30 +52,47 @@ export function MyPlan() {
         <Metric label="Minutes" value={minutes} />
         <Metric label="Calories" value={calories} />
       </div>
-      <div
-        role="tablist"
-        className="tabs tabs-box h-10 w-fit rounded-xl border border-[#232732] bg-[#151921] p-1"
-      >
-        <button
-          type="button"
-          role="tab"
-          aria-selected={tab === "plan"}
-          className={`tab h-8 rounded-lg px-4 text-xs ${tab === "plan" ? "tab-active bg-[#1f242d] font-bold text-white" : "text-[#8a92a0]"}`}
-          onClick={() => setTab("plan")}
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div
+          role="tablist"
+          className="tabs tabs-box h-10 w-fit rounded-xl border border-[#232732] bg-[#151921] p-1"
         >
-          Today&apos;s Plan
-        </button>
-        <button
-          type="button"
-          role="tab"
-          aria-selected={tab === "saved"}
-          className={`tab h-8 rounded-lg px-4 text-xs ${tab === "saved" ? "tab-active bg-[#1f242d] font-bold text-white" : "text-[#8a92a0]"}`}
-          onClick={() => setTab("saved")}
-        >
-          Saved
-        </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={tab === "plan"}
+            className={`tab h-8 rounded-lg px-4 text-xs ${tab === "plan" ? "tab-active bg-[#1f242d] font-bold text-white" : "text-[#8a92a0]"}`}
+            onClick={() => setTab("plan")}
+          >
+            Today&apos;s Plan
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={tab === "saved"}
+            className={`tab h-8 rounded-lg px-4 text-xs ${tab === "saved" ? "tab-active bg-[#1f242d] font-bold text-white" : "text-[#8a92a0]"}`}
+            onClick={() => setTab("saved")}
+          >
+            Saved
+          </button>
+        </div>
+        <label className="flex items-center gap-3 text-xs text-[#8a92a0]">
+          Sort By
+          <select
+            aria-label="Sort By"
+            className="select select-sm h-10 min-h-10 rounded-xl border-[#232732] bg-[#151921] text-xs text-white"
+            value={sort}
+            onChange={(event) => setSort(event.target.value as SortKey)}
+          >
+            <option value="duration">Duration</option>
+            <option value="calories">Calories</option>
+            <option value="rating">Rating</option>
+          </select>
+        </label>
       </div>
-      {workouts.length === 0 ? (
+      {!mounted ? (
+        <p className="py-16 text-center text-sm text-[#8a92a0]">Loading workouts…</p>
+      ) : workouts.length === 0 ? (
         <EmptyPlan />
       ) : (
         <div className="flex flex-col gap-4">
