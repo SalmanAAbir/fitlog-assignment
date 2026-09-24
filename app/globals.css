@@ -1,6 +1,38 @@
 @import "tailwindcss";
-@plugin "daisyui" {
-  themes: dark --default;
+@plugin "daisyui";
+@plugin "daisyui/theme" {
+  name: "fitlog";
+  default: true;
+  prefersdark: false;
+  color-scheme: "dark";
+  --color-base-100: #0c0d10;
+  --color-base-200: #15171d;
+  --color-base-300: #222630;
+  --color-base-content: #ffffff;
+  --color-primary: #c2f800;
+  --color-primary-content: #000000;
+  --color-secondary: #9ca3af;
+  --color-secondary-content: #0c0d10;
+  --color-accent: #c2f800;
+  --color-accent-content: #000000;
+  --color-neutral: #1a2312;
+  --color-neutral-content: #c2f800;
+  --color-info: #9ca3af;
+  --color-info-content: #0c0d10;
+  --color-success: #c2f800;
+  --color-success-content: #000000;
+  --color-warning: #d1d5db;
+  --color-warning-content: #0c0d10;
+  --color-error: #ff6b6b;
+  --color-error-content: #000000;
+  --radius-selector: 9999px;
+  --radius-field: 0.375rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
 }
 
 :root {
@@ -15,6 +47,8 @@
   --footer: #090a0d;
   --footer-line: #1a1d24;
   --copyright: #6b7280;
+  --surface: #15171d;
+  --surface-line: #222630;
 }
 
 @theme inline {
@@ -29,6 +63,8 @@
   --color-footer: var(--footer);
   --color-footer-line: var(--footer-line);
   --color-copyright: var(--copyright);
+  --color-surface: var(--surface);
+  --color-surface-line: var(--surface-line);
   --font-sans: var(--font-inter);
   --font-display: var(--font-oswald);
 }
@@ -36,6 +72,7 @@
 html {
   background: var(--background);
   color: var(--foreground);
+  scroll-behavior: smooth;
 }
 
 body {
