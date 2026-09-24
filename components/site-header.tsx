@@ -13,9 +13,11 @@ const planCount = 0;
 const savedCount = 0;
 
 function isActive(pathname: string, href: string) {
-  return href === "/"
-    ? pathname === "/"
-    : pathname === href || pathname.startsWith(`${href}/`);
+  if (href === "/") {
+    return pathname === "/" || pathname.startsWith("/workouts/");
+  }
+
+  return pathname === href || pathname.startsWith(`${href}/`);
 }
 
 function NavItems({ pathname }: { pathname: string }) {

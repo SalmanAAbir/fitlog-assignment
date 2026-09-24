@@ -1,9 +1,13 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Workout } from "@/lib/workouts";
 
 export function WorkoutCard({ workout }: { workout: Workout }) {
   return (
-    <div className="card card-border group w-full overflow-hidden border-base-300 bg-base-200 transition duration-300 hover:-translate-y-1 hover:border-primary">
+    <Link
+      href={`/workouts/${workout.id}`}
+      className="card card-border group w-full overflow-hidden border-base-300 bg-base-200 transition duration-300 hover:-translate-y-1 hover:border-primary"
+    >
       <div className="h-48 overflow-hidden">
         <Image
           src={workout.image}
@@ -45,6 +49,6 @@ export function WorkoutCard({ workout }: { workout: Workout }) {
           </span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
