@@ -3,14 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/components/logo";
+import { usePlan } from "@/components/plan-provider";
 
 const links = [
   { href: "/", label: "Workouts" },
   { href: "/my-plan", label: "My Plan" },
 ];
-
-const planCount = 0;
-const savedCount = 0;
 
 function isActive(pathname: string, href: string) {
   if (href === "/") {
@@ -44,6 +42,7 @@ function NavItems({ pathname }: { pathname: string }) {
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const { plan, saved } = usePlan();
 
   return (
     <header className="border-b border-base-300 bg-base-100/95">
@@ -76,17 +75,17 @@ export function SiteHeader() {
             <NavItems pathname={pathname} />
           </ul>
         </nav>
-        <div className="navbar-end w-auto gap-3 md:w-1/2 md:gap-6">
+        <div className="navbar-end w-auto shrink-0 gap-2 md:w-1/2 md:gap-6">
           <Link href="/my-plan" className="inline-flex items-center gap-2 text-xs font-medium text-warning">
             Plan
             <span className="badge badge-primary badge-sm size-5 rounded-full px-0 font-bold">
-              {planCount}
+              {plan.length}
             </span>
           </Link>
           <Link href="/my-plan" className="inline-flex items-center gap-2 text-xs font-medium text-secondary">
             Saved
             <span className="badge badge-outline badge-sm size-5 rounded-full border-base-300 px-0 font-medium text-warning">
-              {savedCount}
+              {saved.length}
             </span>
           </Link>
         </div>

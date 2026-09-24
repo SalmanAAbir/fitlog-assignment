@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Oswald } from "next/font/google";
+import { PlanProvider } from "@/components/plan-provider";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
@@ -27,12 +28,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-theme="fitlog"
+      data-scroll-behavior="smooth"
       className={`${inter.variable} ${oswald.variable} min-h-full antialiased`}
     >
       <body className={`${inter.className} flex min-h-full flex-col`}>
-        <SiteHeader />
-        <main className="flex-1">{children}</main>
-        <SiteFooter />
+        <PlanProvider>
+          <SiteHeader />
+          <main className="flex-1">{children}</main>
+          <SiteFooter />
+        </PlanProvider>
       </body>
     </html>
   );

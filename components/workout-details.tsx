@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { WorkoutActions } from "@/components/workout-actions";
 import type { Workout } from "@/lib/workouts";
 
 export function WorkoutDetails({ workout }: { workout: Workout }) {
@@ -14,7 +15,7 @@ export function WorkoutDetails({ workout }: { workout: Workout }) {
 
   return (
     <div className="grid items-start gap-8 lg:grid-cols-2 lg:gap-14">
-      <div className="relative h-80 overflow-hidden rounded-2xl border border-[#232834] bg-[#171a21] sm:h-[480px] lg:h-[735px]">
+      <div className="relative h-64 overflow-hidden rounded-2xl border border-[#232834] bg-[#171a21] sm:h-120 lg:h-[735px]">
         <Image
           src={workout.image}
           alt={workout.name}
@@ -25,7 +26,7 @@ export function WorkoutDetails({ workout }: { workout: Workout }) {
         />
       </div>
       <div className="flex min-w-0 flex-col gap-6">
-        <h1 className="font-display text-4xl leading-tight font-bold text-base-content uppercase">
+        <h1 className="font-display text-3xl leading-tight font-bold text-base-content uppercase sm:text-4xl">
           {workout.name}
         </h1>
         <p className="text-base leading-6 font-normal text-[#9CA3AF]">
@@ -67,34 +68,7 @@ export function WorkoutDetails({ workout }: { workout: Workout }) {
             ))}
           </ol>
         </div>
-        <div className="flex flex-wrap gap-3">
-          <button
-            type="button"
-            className="btn btn-primary h-11 min-h-11 rounded-xl px-5 text-sm font-semibold"
-          >
-            <Image
-              src="/icons/add-plan.svg"
-              alt=""
-              width={16}
-              height={16}
-              unoptimized
-            />
-            Add to today&apos;s plan
-          </button>
-          <button
-            type="button"
-            className="btn btn-outline h-11 min-h-11 rounded-xl border-[#374151] bg-transparent px-5 text-sm font-medium text-[#e5e7eb]"
-          >
-            <Image
-              src="/icons/save-later.svg"
-              alt=""
-              width={16}
-              height={16}
-              unoptimized
-            />
-            Save for later
-          </button>
-        </div>
+        <WorkoutActions workout={workout} />
       </div>
     </div>
   );

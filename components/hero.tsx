@@ -7,7 +7,7 @@ export function Hero() {
         <p className="text-[11px] font-bold tracking-[1.1px] text-primary uppercase">
           Workout Library
         </p>
-        <h1 className="w-full max-w-[558px] font-display text-[60px] leading-none font-[800] tracking-[-1.5px] text-base-content uppercase">
+        <h1 className="w-full max-w-[558px] font-display text-[40px] leading-none font-[800] tracking-[-1.5px] text-base-content uppercase sm:text-5xl lg:text-[60px]">
           Train with intent. Log every set.
         </h1>
         <p className="max-w-[512px] text-[16px] leading-6 font-normal text-[#9CA3AF]">
