@@ -1,5 +1,9 @@
+import { Suspense } from "react";
 import { Hero } from "@/components/hero";
-import { sampleWorkout, WorkoutCard } from "@/components/workout-card";
+import {
+  WorkoutLibrary,
+  WorkoutLibraryFallback,
+} from "@/components/workout-library";
 
 export default function Home() {
   return (
@@ -12,9 +16,9 @@ export default function Home() {
         <p className="mt-1 text-sm leading-normal text-secondary">
           Twelve lifts covering every major muscle group.
         </p>
-        <div className="mt-8">
-          <WorkoutCard workout={sampleWorkout} />
-        </div>
+        <Suspense fallback={<WorkoutLibraryFallback />}>
+          <WorkoutLibrary />
+        </Suspense>
       </section>
     </div>
   );
