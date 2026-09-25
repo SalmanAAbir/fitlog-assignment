@@ -20,6 +20,13 @@ export function Hero() {
             className="btn btn-primary h-10 min-h-10 px-6 text-xs font-bold tracking-[0.3px] uppercase"
           >
             Browse workouts
+            <Image
+              src="/icons/browse.svg"
+              alt=""
+              width={16}
+              height={16}
+              unoptimized
+            />
           </a>
         </div>
       </div>

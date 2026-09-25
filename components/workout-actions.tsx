@@ -1,11 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { usePlan } from "@/components/plan-provider";
+import { PLAN_LIMIT, usePlan } from "@/components/plan-provider";
 import type { Workout } from "@/lib/workouts";
 
 export function WorkoutActions({ workout }: { workout: Workout }) {
-  const { addToPlan, saveForLater } = usePlan();
+  const { plan, addToPlan, saveForLater } = usePlan();
+  const planFull = plan.length >= PLAN_LIMIT;
 
   return (
     <div className="flex flex-wrap gap-3">
@@ -13,6 +14,7 @@ export function WorkoutActions({ workout }: { workout: Workout }) {
         type="button"
         className="btn btn-primary h-11 min-h-11 rounded-xl px-5 text-sm font-semibold"
         onClick={() => addToPlan(workout)}
+        disabled={planFull}
       >
         <Image
           src="/icons/add-plan.svg"

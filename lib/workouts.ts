@@ -14,6 +14,18 @@ export type Workout = {
   instructions: string[];
 };
 
+export function matchesWorkout(workout: Workout, query: string) {
+  const needle = query.trim().toLowerCase();
+  if (!needle) {
+    return true;
+  }
+
+  return (
+    workout.name.toLowerCase().includes(needle) ||
+    workout.muscleGroups.some((tag) => tag.toLowerCase().includes(needle))
+  );
+}
+
 export async function getWorkouts(): Promise<Workout[]> {
   const response = await fetch("https://api.abcz.workers.dev/api/fitlog");
 
